@@ -29,6 +29,8 @@ namespace OnlinePerfumeShop
                 .AddEntityFrameworkStores<OnlinePerfumeShopDbContext>();
             services
                 .AddControllersWithViews();
+
+            
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
