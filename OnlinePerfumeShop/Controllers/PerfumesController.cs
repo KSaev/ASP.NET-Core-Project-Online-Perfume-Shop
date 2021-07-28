@@ -54,6 +54,21 @@ namespace OnlinePerfumeShop.Controllers
             return Redirect("/");
         }
 
+        
+        public IActionResult All() 
+        {
+            var perfumes = dbContext.Perfumes.Select(x => new ListPerfumeViewModel
+            {
+                Id = x.Id,
+                Description = x.Desctription,
+                Name = x.Name,
+                Price = x.Price,
+                ImgUrl = x.ImageUrl
+            }).ToList();
+
+            return View(perfumes);
+        }
+
         private IEnumerable<PerfumeCategoryInputModel> GetCategories() 
         {
              return this.dbContext
