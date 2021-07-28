@@ -18,6 +18,8 @@ namespace OnlinePerfumeShop.Models.Perfumes
         [Range(PerfumeMinPrice, PerfumeMaxPrice)]
         public decimal Price { get; init; }
 
+        public int Quantity { get; set; }
+
         [Display(Name = "Image URL")]
         [Required]
         [Url]
@@ -27,5 +29,9 @@ namespace OnlinePerfumeShop.Models.Perfumes
         public int CategoryId { get; init; }
 
         public IEnumerable<PerfumeCategoryInputModel> Categories { get; set; }
+
+        [Display(Name = "Brands")]
+        public int BrandId { get; set; }
+        public IEnumerable<PerfumeBrandInputModel> Brands { get; set; }
     }
 }

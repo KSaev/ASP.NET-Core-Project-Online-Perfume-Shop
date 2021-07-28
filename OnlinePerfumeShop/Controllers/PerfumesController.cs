@@ -21,7 +21,9 @@ namespace OnlinePerfumeShop.Controllers
         public IActionResult Add() => View(new AddPerfumeInputModel
 
         {
-            Categories = this.GetCategories()
+            Categories = this.GetCategories(),
+            Brands = this.GetBrands(),
+            
         });
         
 
@@ -31,8 +33,10 @@ namespace OnlinePerfumeShop.Controllers
             if (!ModelState.IsValid)
             {
                 model.Categories = this.GetCategories();
+                model.Brands = this.GetBrands();
                 return View(model);
             }
+            
             var perfume = new Perfume
             {
                 Name = model.Name,
@@ -40,6 +44,8 @@ namespace OnlinePerfumeShop.Controllers
                 ImageUrl = model.ImageUrl,
                 Price = model.Price,
                 CategoryId = model.CategoryId,
+                Qunatity = model.Quantity,
+                BrandId = model.BrandId
             };
 
             dbContext.Perfumes.Add(perfume);
@@ -59,6 +65,17 @@ namespace OnlinePerfumeShop.Controllers
                 })
                 .ToList();
 
+        }
+        private IEnumerable<PerfumeBrandInputModel> GetBrands() 
+        {
+            return this.dbContext
+                .Brands
+                .Select(x => new PerfumeBrandInputModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                })
+                .ToList();
         }
     }
 }
