@@ -1,28 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OnlinePerfumeShop.Data;
-using OnlinePerfumeShop.Data.Models;
 using OnlinePerfumeShop.Models.Perfumes;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+using OnlinePerfumeShop.Services.Perfumes;
 
 namespace OnlinePerfumeShop.Controllers
 {
     public class PerfumesController : Controller
     {
-        private readonly OnlinePerfumeShopDbContext dbContext;
+        private readonly IPerfumeService service;
         
 
-        public PerfumesController(OnlinePerfumeShopDbContext dbContext)
+        public PerfumesController(IPerfumeService service)
         {
-            this.dbContext = dbContext;
+            this.service = service;
         }
 
         public IActionResult Add() => View(new AddPerfumeInputModel
 
         {
-            Categories = this.GetCategories(),
-            Brands = this.GetBrands(),
+            Categories = this.service.GetCategories(),
+            Brands = this.service.GetBrands(),
             
         });
         
@@ -30,26 +26,23 @@ namespace OnlinePerfumeShop.Controllers
         [HttpPost]
         public IActionResult Add(AddPerfumeInputModel model) 
         {
+
             if (!ModelState.IsValid)
             {
-                model.Categories = this.GetCategories();
-                model.Brands = this.GetBrands();
+                model.Categories = this.service.GetCategories();
+                model.Brands = this.service.GetBrands();
                 return View(model);
             }
-            
-            var perfume = new Perfume
-            {
-                Name = model.Name,
-                Desctription = model.Description,
-                ImageUrl = model.ImageUrl,
-                Price = model.Price,
-                CategoryId = model.CategoryId,
-                Qunatity = model.Quantity,
-                BrandId = model.BrandId
-            };
 
-            dbContext.Perfumes.Add(perfume);
-            dbContext.SaveChanges();
+            service.Create(
+                model.Name,
+                model.Description,
+                model.ImageUrl,
+                model.Price,
+                model.CategoryId,
+                model.Quantity,
+                model.BrandId
+               );
 
             return Redirect("/");
         }
@@ -57,40 +50,12 @@ namespace OnlinePerfumeShop.Controllers
         
         public IActionResult All() 
         {
-            var perfumes = dbContext.Perfumes.Select(x => new ListPerfumeViewModel
-            {
-                Id = x.Id,
-                Description = x.Desctription,
-                Name = x.Name,
-                Price = x.Price,
-                ImgUrl = x.ImageUrl
-            }).ToList();
+            var perfumes = service.All();
 
             return View(perfumes);
         }
 
-        private IEnumerable<PerfumeCategoryInputModel> GetCategories() 
-        {
-             return this.dbContext
-                .Categories
-                .Select(x => new PerfumeCategoryInputModel
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                })
-                .ToList();
-
-        }
-        private IEnumerable<PerfumeBrandInputModel> GetBrands() 
-        {
-            return this.dbContext
-                .Brands
-                .Select(x => new PerfumeBrandInputModel
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                })
-                .ToList();
-        }
+   
+    
     }
 }
