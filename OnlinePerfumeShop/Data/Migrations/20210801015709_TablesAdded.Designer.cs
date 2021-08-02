@@ -10,8 +10,8 @@ using OnlinePerfumeShop.Data;
 namespace OnlinePerfumeShop.Migrations
 {
     [DbContext(typeof(OnlinePerfumeShopDbContext))]
-    [Migration("20210726203418_PerfumeAndCategoryTablesAdded")]
-    partial class PerfumeAndCategoryTablesAdded
+    [Migration("20210801015709_TablesAdded")]
+    partial class TablesAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -84,6 +84,10 @@ namespace OnlinePerfumeShop.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -135,6 +139,8 @@ namespace OnlinePerfumeShop.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -221,6 +227,21 @@ namespace OnlinePerfumeShop.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("OnlinePerfumeShop.Data.Models.Brand", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Brands");
+                });
+
             modelBuilder.Entity("OnlinePerfumeShop.Data.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -245,6 +266,12 @@ namespace OnlinePerfumeShop.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AddedByUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BrandId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -265,11 +292,30 @@ namespace OnlinePerfumeShop.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("Qunatity")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("AddedByUserId");
+
+                    b.HasIndex("BrandId");
 
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Perfumes");
+                });
+
+            modelBuilder.Entity("OnlinePerfumeShop.Data.Models.User", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
+
+                    b.HasDiscriminator().HasValue("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -325,13 +371,32 @@ namespace OnlinePerfumeShop.Migrations
 
             modelBuilder.Entity("OnlinePerfumeShop.Data.Models.Perfume", b =>
                 {
+                    b.HasOne("OnlinePerfumeShop.Data.Models.User", "AddedByUser")
+                        .WithMany()
+                        .HasForeignKey("AddedByUserId");
+
+                    b.HasOne("OnlinePerfumeShop.Data.Models.Brand", "Brand")
+                        .WithMany("Perfumes")
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("OnlinePerfumeShop.Data.Models.Category", "Category")
                         .WithMany("Perfumes")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.Navigation("AddedByUser");
+
+                    b.Navigation("Brand");
+
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("OnlinePerfumeShop.Data.Models.Brand", b =>
+                {
+                    b.Navigation("Perfumes");
                 });
 
             modelBuilder.Entity("OnlinePerfumeShop.Data.Models.Category", b =>

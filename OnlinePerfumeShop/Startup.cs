@@ -6,7 +6,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OnlinePerfumeShop.Data;
+using OnlinePerfumeShop.Data.Models;
 using OnlinePerfumeShop.Infrastructure;
+using OnlinePerfumeShop.Services;
+using OnlinePerfumeShop.Services.Perfumes;
 
 namespace OnlinePerfumeShop
 {
@@ -25,10 +28,20 @@ namespace OnlinePerfumeShop
                 .AddDatabaseDeveloperPageExceptionFilter();
 
             services
-                .AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddDefaultIdentity<User>(options =>
+                {
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireDigit = false;
+                })
                 .AddEntityFrameworkStores<OnlinePerfumeShopDbContext>();
+
             services
                 .AddControllersWithViews();
+            
+
+            services.AddTransient<IPerfumeService, PerfumeService>();
 
             
         }
@@ -59,7 +72,6 @@ namespace OnlinePerfumeShop
                     endpoints.MapDefaultControllerRoute();
                     endpoints.MapRazorPages();
                 });
-
         }
     }
 }

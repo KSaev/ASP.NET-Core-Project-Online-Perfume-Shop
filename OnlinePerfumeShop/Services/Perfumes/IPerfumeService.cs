@@ -8,7 +8,7 @@ namespace OnlinePerfumeShop.Services.Perfumes
 {
     public interface IPerfumeService
     {
-        IEnumerable<ListPerfumesServiceModel> All();
+        IEnumerable<ListPerfumesServiceModel> All(int id,int itemsPerPage);
 
         void Create(string name
             ,string desctription
@@ -16,10 +16,13 @@ namespace OnlinePerfumeShop.Services.Perfumes
             ,decimal price
             ,int categoryId
             ,int quantity
-            ,int brandId);
+            ,int brandId
+            ,string userId);
 
         public IEnumerable<GetCategoriesServiceModel> GetCategories();
 
         public IEnumerable<GetBrandsServiceModel> GetBrands();
+
+        public int GetCount();
     }
 }

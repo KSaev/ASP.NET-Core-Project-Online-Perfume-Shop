@@ -15,12 +15,20 @@ namespace OnlinePerfumeShop.Data
 
         public DbSet<Category> Categories { get; init; }
 
+        public DbSet<Brand> Brands { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Perfume>()
                 .HasOne(x => x.Category)
                 .WithMany(x => x.Perfumes)
                 .HasForeignKey(x => x.CategoryId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Perfume>()
+                .HasOne(x => x.Brand)
+                .WithMany(x => x.Perfumes)
+                .HasForeignKey(x => x.BrandId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(builder);

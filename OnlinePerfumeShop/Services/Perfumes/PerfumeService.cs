@@ -18,12 +18,14 @@ namespace OnlinePerfumeShop.Services.Perfumes
         }
 
         public void Create(string name
-            ,string desctription
-            ,string imgUrl
-            ,decimal price
-            ,int categoryId
-            ,int quantity
-            ,int brandId)
+            , string desctription
+            , string imgUrl
+            , decimal price
+            , int categoryId
+            , int quantity
+            , int brandId
+            , string userId
+            )
         {
             var perfume = new Perfume
             {
@@ -34,21 +36,27 @@ namespace OnlinePerfumeShop.Services.Perfumes
                 CategoryId = categoryId,
                 Qunatity = quantity,
                 BrandId = brandId,
+                AddedByUserId = userId,
             };
 
             dbContext.Perfumes.Add(perfume);
             dbContext.SaveChanges();
         }
 
-        public IEnumerable<ListPerfumesServiceModel> All()
+        public IEnumerable<ListPerfumesServiceModel> All(int page, int itemsPerPage)
         {
-            return dbContext.Perfumes.Select(x => new ListPerfumesServiceModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Price = x.Price,
-                ImgUrl = x.ImageUrl
-            }).ToList();
+            return dbContext.Perfumes
+                .OrderByDescending(x => x.Id)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .Select(x => new ListPerfumesServiceModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Price = x.Price,
+                    ImgUrl = x.ImageUrl,
+                    Quantity = x.Qunatity,
+                }).ToList();
         }
         public IEnumerable<GetCategoriesServiceModel> GetCategories()
         {
@@ -59,6 +67,7 @@ namespace OnlinePerfumeShop.Services.Perfumes
                Id = x.Id,
                Name = x.Name,
            })
+           .OrderBy(x => x.Name)
            .ToList();
         }
         public IEnumerable<GetBrandsServiceModel> GetBrands()
@@ -70,7 +79,13 @@ namespace OnlinePerfumeShop.Services.Perfumes
                    Id = x.Id,
                    Name = x.Name,
                })
+               .OrderBy(x => x.Name)
                .ToList();
+        }
+
+        public int GetCount() 
+        {
+            return dbContext.Perfumes.Count();
         }
     }
 }

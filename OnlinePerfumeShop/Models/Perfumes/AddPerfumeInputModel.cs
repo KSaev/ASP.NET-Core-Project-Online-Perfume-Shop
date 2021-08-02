@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlinePerfumeShop.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using static OnlinePerfumeShop.Data.DataConstants;
@@ -28,10 +29,11 @@ namespace OnlinePerfumeShop.Models.Perfumes
         [Display(Name = "Categories")]
         public int CategoryId { get; init; }
 
-        public IEnumerable<PerfumeCategoryInputModel> Categories { get; set; }
+        public IEnumerable<GetCategoriesServiceModel> Categories { get; set; }
 
         [Display(Name = "Brands")]
         public int BrandId { get; set; }
-        public IEnumerable<PerfumeBrandInputModel> Brands { get; set; }
+
+        public IEnumerable<GetBrandsServiceModel> Brands { get; set; }
     }
 }

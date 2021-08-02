@@ -10,6 +10,8 @@
         public const int PerfumeMaxPrice= 300;
         public const int CategoryNameMinLenght = 3;
         public const int CategoryNameMaxLenght = 20;
-
+        public const int BrandNameMinLenght = 3;
+        public const int BrandNameMaxLenght = 20;
+        public const int UserFullNameMaxLenght = 8;
     }
 }

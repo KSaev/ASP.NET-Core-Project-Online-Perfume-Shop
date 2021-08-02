@@ -1,19 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using OnlinePerfumeShop.Data.Models;
 using OnlinePerfumeShop.Models.Perfumes;
+using OnlinePerfumeShop.Services.Models;
 using OnlinePerfumeShop.Services.Perfumes;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace OnlinePerfumeShop.Controllers
 {
     public class PerfumesController : Controller
     {
         private readonly IPerfumeService service;
-        
 
-        public PerfumesController(IPerfumeService service)
+        public PerfumesController(IPerfumeService service, UserManager<User> userManager)
         {
             this.service = service;
         }
 
+        [Authorize]
         public IActionResult Add() => View(new AddPerfumeInputModel
 
         {
@@ -24,6 +30,7 @@ namespace OnlinePerfumeShop.Controllers
         
 
         [HttpPost]
+        [Authorize]
         public IActionResult Add(AddPerfumeInputModel model) 
         {
 
@@ -33,6 +40,7 @@ namespace OnlinePerfumeShop.Controllers
                 model.Brands = this.service.GetBrands();
                 return View(model);
             }
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             service.Create(
                 model.Name,
@@ -41,21 +49,29 @@ namespace OnlinePerfumeShop.Controllers
                 model.Price,
                 model.CategoryId,
                 model.Quantity,
-                model.BrandId
+                model.BrandId,
+                userId
                );
 
             return Redirect("/");
         }
 
         
-        public IActionResult All() 
+        public IActionResult All(int id = 1) 
         {
-            var perfumes = service.All();
+            var itemsPerPage = 12;
+           
+            var perfumes = service.All(id, itemsPerPage);
 
-            return View(perfumes);
+            var viewModel = new AllPerfumeServiceModel
+            {
+                Page = id,
+                Perfumes = perfumes,
+                PerfumeCount = service.GetCount(),
+                ItemsPerPage = itemsPerPage,
+            };
+
+            return View(viewModel);
         }
-
-   
-    
     }
 }
