@@ -43,6 +43,23 @@ namespace OnlinePerfumeShop.Services.Perfumes
             dbContext.SaveChanges();
         }
 
+        public PerfumeDetailsServiceModel GetDetails(int id) 
+        {
+            return dbContext.Perfumes
+               .Where(x => x.Id == id)
+               .Select(x => new PerfumeDetailsServiceModel
+               {
+                   Brand = x.Brand.Name,
+                   Desctripion = x.Desctription,
+                   Id = id,
+                   Name = x.Name,
+                   Price = x.Price,
+                   Quantity = x.Qunatity,
+                   ImgUrl = x.ImageUrl,
+                   Category = x.Category.Name,
+               })
+               .FirstOrDefault();
+        }
         public IEnumerable<ListPerfumesServiceModel> All(int page, int itemsPerPage)
         {
             return dbContext.Perfumes

@@ -73,5 +73,11 @@ namespace OnlinePerfumeShop.Controllers
 
             return View(viewModel);
         }
+        public IActionResult Details(int id)
+        {
+            var viewModel = service.GetDetails(id);
+
+            return View(viewModel);
+        }
     }
 }

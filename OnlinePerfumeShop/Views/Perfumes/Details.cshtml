@@ -1,0 +1,38 @@
+﻿@model OnlinePerfumeShop.Services.Models.PerfumeDetailsServiceModel
+@{
+    this.ViewData["Title"] = "Details";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/Perfumes/details.css" asp-append-version="true" />
+}
+
+<div class="container">
+    <h1 class="my-4">
+        @Model.Name
+    </h1>
+    <div class="row">
+
+        <div class="col-md-6 ">
+            <img class="img-fluid w-75" src="@Model.ImgUrl" alt="">
+        </div>
+
+        <div>
+            <div class="product_meta ">
+                <span class="posted_in"> <strong>Категория:</strong> <a>@Model.Category</a></span>
+                <span class="tagged_as"><strong>Марка:</strong> <a>@Model.Brand</a></span>
+            </div>
+            <div class="m-bot15">
+            <strong>Цена : </strong>
+            <span class="pro-price">@Model.Price лв</span></div>
+            <br />
+            <p>
+                <button class="btn btn-round btn-danger" type="button"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+            </p>
+        </div>
+        <div class="col-md-10">
+            <h3 class="my-3">Описание на продукта</h3>
+            <p>@Model.Desctripion</p>
+        </div>  
+    </div>
+    </div>
