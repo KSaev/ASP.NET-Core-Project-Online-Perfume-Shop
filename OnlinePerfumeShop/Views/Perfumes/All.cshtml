@@ -1,4 +1,4 @@
-﻿@model OnlinePerfumeShop.Services.Models.AllPerfumeServiceModel
+﻿@model OnlinePerfumeShop.Models.Perfumes.ListPerfumeViewModel
 @{
     this.ViewData["Title"] = "All perfumes";
 }
@@ -32,9 +32,6 @@
         }
     </div>
 </div>
-
-<hr />
-
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
         <li class="page-item @if (!Model.HasPreviousPage) {<text>disabled</text>}">
@@ -66,4 +63,7 @@
             <a class="page-link" asp-action="All" asp-route-id="@Model.NextPage">Next</a>
         </li>
     </ul>
-</nav>
+
+    <br />
+    <br />
+    <br />

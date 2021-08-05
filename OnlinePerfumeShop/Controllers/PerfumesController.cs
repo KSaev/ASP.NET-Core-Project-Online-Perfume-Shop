@@ -3,10 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OnlinePerfumeShop.Data.Models;
 using OnlinePerfumeShop.Models.Perfumes;
-using OnlinePerfumeShop.Services.Models;
 using OnlinePerfumeShop.Services.Perfumes;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace OnlinePerfumeShop.Controllers
 {
@@ -61,17 +59,16 @@ namespace OnlinePerfumeShop.Controllers
         {
             var itemsPerPage = 12;
            
-            var perfumes = service.All(id, itemsPerPage);
-
-            var viewModel = new AllPerfumeServiceModel
+            var perfumes = new ListPerfumeViewModel
             {
+                Perfumes = service.All(id,itemsPerPage),
                 Page = id,
-                Perfumes = perfumes,
                 PerfumeCount = service.GetCount(),
                 ItemsPerPage = itemsPerPage,
             };
 
-            return View(viewModel);
+
+            return View(perfumes);
         }
         public IActionResult Details(int id)
         {
