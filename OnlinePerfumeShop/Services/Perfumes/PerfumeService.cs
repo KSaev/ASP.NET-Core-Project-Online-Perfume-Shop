@@ -23,9 +23,7 @@ namespace OnlinePerfumeShop.Services.Perfumes
             , decimal price
             , int categoryId
             , int quantity
-            , int brandId
-            , string userId
-            )
+            , int brandId)
         {
             var perfume = new Perfume
             {
@@ -36,14 +34,13 @@ namespace OnlinePerfumeShop.Services.Perfumes
                 CategoryId = categoryId,
                 Qunatity = quantity,
                 BrandId = brandId,
-                AddedByUserId = userId,
             };
 
             dbContext.Perfumes.Add(perfume);
             dbContext.SaveChanges();
         }
 
-        public PerfumeDetailsServiceModel GetDetails(int id) 
+        public PerfumeDetailsServiceModel GetDetails(int id, string userId) 
         {
             return dbContext.Perfumes
                .Where(x => x.Id == id)
@@ -57,13 +54,14 @@ namespace OnlinePerfumeShop.Services.Perfumes
                    Quantity = x.Qunatity,
                    ImgUrl = x.ImageUrl,
                    Category = x.Category.Name,
+                   UserId = userId,
                })
                .FirstOrDefault();
         }
         public IEnumerable<ListPerfumesServiceModel> All(int page, int itemsPerPage)
         {
             return dbContext.Perfumes
-                .OrderByDescending(x => x.Id)
+                .OrderBy(x => x.Id)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
                 .Select(x => new ListPerfumesServiceModel
@@ -103,6 +101,11 @@ namespace OnlinePerfumeShop.Services.Perfumes
         public int GetCount() 
         {
             return dbContext.Perfumes.Count();
+        }
+
+        public Perfume GetPerfumeById(int id)
+        {
+            return this.dbContext.Perfumes.FirstOrDefault(x => x.Id == id);
         }
     }
 }

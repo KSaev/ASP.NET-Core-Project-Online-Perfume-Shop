@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using OnlinePerfumeShop.Data.Models;
+using System;
 
 namespace OnlinePerfumeShop.Data
 {
-    public class OnlinePerfumeShopDbContext : IdentityDbContext
+    public class OnlinePerfumeShopDbContext : IdentityDbContext<User>
     {
        
         public OnlinePerfumeShopDbContext(DbContextOptions<OnlinePerfumeShopDbContext> options)
@@ -16,6 +17,9 @@ namespace OnlinePerfumeShop.Data
         public DbSet<Category> Categories { get; init; }
 
         public DbSet<Brand> Brands { get; set; }
+
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -30,6 +34,9 @@ namespace OnlinePerfumeShop.Data
                 .WithMany(x => x.Perfumes)
                 .HasForeignKey(x => x.BrandId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<ShoppingCart>()
+                .HasKey(x => new { x.PerfumeId, x.UserId });
 
             base.OnModelCreating(builder);
         }

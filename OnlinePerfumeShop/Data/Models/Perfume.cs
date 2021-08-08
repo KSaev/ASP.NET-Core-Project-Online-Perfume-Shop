@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using static OnlinePerfumeShop.Data.DataConstants;
 
 namespace OnlinePerfumeShop.Data.Models
 {
     public class Perfume
-    {
+    {     
         public int Id { get; init; }
 
         [Required]
@@ -21,11 +22,9 @@ namespace OnlinePerfumeShop.Data.Models
         [Required]
         public string ImageUrl { get; set; }
 
-        [Required]
+        [Range(0,201)]
         public int Qunatity { get; set; }
-
-        public string AddedByUserId { get; set; }
-        public User AddedByUser { get; set; }
+    
         public int CategoryId { get; set; }
 
         public Category Category { get; set; }
@@ -33,5 +32,6 @@ namespace OnlinePerfumeShop.Data.Models
         public int BrandId { get; set; }
 
         public Brand Brand { get; set; }
+
     }
 }

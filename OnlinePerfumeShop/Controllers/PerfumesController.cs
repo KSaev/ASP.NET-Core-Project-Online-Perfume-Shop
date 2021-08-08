@@ -12,7 +12,7 @@ namespace OnlinePerfumeShop.Controllers
     {
         private readonly IPerfumeService service;
 
-        public PerfumesController(IPerfumeService service, UserManager<User> userManager)
+        public PerfumesController(IPerfumeService service)
         {
             this.service = service;
         }
@@ -38,7 +38,6 @@ namespace OnlinePerfumeShop.Controllers
                 model.Brands = this.service.GetBrands();
                 return View(model);
             }
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             service.Create(
                 model.Name,
@@ -47,8 +46,7 @@ namespace OnlinePerfumeShop.Controllers
                 model.Price,
                 model.CategoryId,
                 model.Quantity,
-                model.BrandId,
-                userId
+                model.BrandId
                );
 
             return Redirect("/");
@@ -72,7 +70,9 @@ namespace OnlinePerfumeShop.Controllers
         }
         public IActionResult Details(int id)
         {
-            var viewModel = service.GetDetails(id);
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            var viewModel = service.GetDetails(id, userId);
 
             return View(viewModel);
         }

@@ -16,5 +16,7 @@ namespace OnlinePerfumeShop.Services.Models
         public decimal Price { get; set; }
         public decimal OldPrice => Price + this.Price * 0.20m;
         public int Quantity { get; set; }
+
+        public string UserId { get; set; }
     }
 }

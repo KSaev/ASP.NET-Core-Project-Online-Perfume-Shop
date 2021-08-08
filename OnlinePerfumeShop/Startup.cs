@@ -11,6 +11,7 @@ using OnlinePerfumeShop.Data.Models;
 using OnlinePerfumeShop.Infrastructure;
 using OnlinePerfumeShop.Services;
 using OnlinePerfumeShop.Services.Perfumes;
+using OnlinePerfumeShop.Services.ShoppingCart;
 
 namespace OnlinePerfumeShop
 {
@@ -36,6 +37,7 @@ namespace OnlinePerfumeShop
                     options.Password.RequireLowercase = false;
                     options.Password.RequireDigit = false;
                 })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<OnlinePerfumeShopDbContext>();
 
             services
@@ -47,6 +49,7 @@ namespace OnlinePerfumeShop
             });
 
             services.AddTransient<IPerfumeService, PerfumeService>();
+            services.AddTransient<IShoppingCartService, ShoppingCartService>();
 
             
         }
