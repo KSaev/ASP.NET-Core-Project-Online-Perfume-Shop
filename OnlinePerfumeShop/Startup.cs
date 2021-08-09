@@ -10,6 +10,7 @@ using OnlinePerfumeShop.Data;
 using OnlinePerfumeShop.Data.Models;
 using OnlinePerfumeShop.Infrastructure;
 using OnlinePerfumeShop.Services;
+using OnlinePerfumeShop.Services.Home;
 using OnlinePerfumeShop.Services.Perfumes;
 using OnlinePerfumeShop.Services.ShoppingCart;
 
@@ -50,7 +51,7 @@ namespace OnlinePerfumeShop
 
             services.AddTransient<IPerfumeService, PerfumeService>();
             services.AddTransient<IShoppingCartService, ShoppingCartService>();
-
+            services.AddTransient<IHomeService, HomeService>();
             
         }
 

@@ -57,22 +57,7 @@ namespace OnlinePerfumeShop.Services.Perfumes
                    UserId = userId,
                })
                .FirstOrDefault();
-        }
-        public IEnumerable<ListPerfumesServiceModel> All(int page, int itemsPerPage)
-        {
-            return dbContext.Perfumes
-                .OrderBy(x => x.Id)
-                .Skip((page - 1) * itemsPerPage)
-                .Take(itemsPerPage)
-                .Select(x => new ListPerfumesServiceModel
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Price = x.Price,
-                    ImgUrl = x.ImageUrl,
-                    Quantity = x.Qunatity,
-                }).ToList();
-        }
+        }   
         public IEnumerable<GetCategoriesServiceModel> GetCategories()
         {
             return this.dbContext
@@ -96,16 +81,6 @@ namespace OnlinePerfumeShop.Services.Perfumes
                })
                .OrderBy(x => x.Name)
                .ToList();
-        }
-
-        public int GetCount() 
-        {
-            return dbContext.Perfumes.Count();
-        }
-
-        public Perfume GetPerfumeById(int id)
-        {
-            return this.dbContext.Perfumes.FirstOrDefault(x => x.Id == id);
-        }
+        }      
     }
 }

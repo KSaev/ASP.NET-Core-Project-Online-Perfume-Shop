@@ -50,24 +50,7 @@ namespace OnlinePerfumeShop.Controllers
                );
 
             return Redirect("/");
-        }
-
-        
-        public IActionResult All(int id = 1) 
-        {
-            var itemsPerPage = 12;
-           
-            var perfumes = new ListPerfumeViewModel
-            {
-                Perfumes = service.All(id,itemsPerPage),
-                Page = id,
-                PerfumeCount = service.GetCount(),
-                ItemsPerPage = itemsPerPage,
-            };
-
-
-            return View(perfumes);
-        }
+        }         
         public IActionResult Details(int id)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;

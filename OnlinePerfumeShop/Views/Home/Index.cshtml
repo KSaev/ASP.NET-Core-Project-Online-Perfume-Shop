@@ -1,8 +1,69 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model OnlinePerfumeShop.Models.Perfumes.ListPerfumeViewModel
+@{
+    this.ViewData["Title"] = "All perfumes";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section Styles{
+    <link rel="stylesheet" href="~/css/Perfumes/all.css" asp-append-version="true" />
+}
+
+<div class="container d-flex justify-content-center mt-50 mb-50">
+    <div class="row">
+        @foreach (var item in this.Model.Perfumes)
+        {
+        <div class="col-md-4 mt-2">
+            <div class="card col-md-12 row-md-12" width="100" height="100">
+                <div class="card-body">
+                    <div class="card-img-actions"> <img src="@item.ImgUrl" class="card-img img-fluid" width="100" height="100"> </div>
+                </div>
+                <div class="card-body bg-light text-center">
+                    <div class="mb-2">
+                        <h6 class="font-weight-semibold mb-2"> <a class="text-default mb-1" data-abc="true">@item.Name</a> </h6>
+                    </div>
+                    <a class="text-muted" data-abc="true">@item.Quantity ml</a>
+                    <h3 class="mb-0 font-weight-semibold">@item.Price лв</h3>
+                    <br />
+                    <td>
+                        <a class="btn btn-dark fa fa-cart-plus mr-2 align-bottom" href="/Perfumes/Details?id=@item.Id">View Details</a>
+                    </td>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
 </div>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @if (!Model.HasPreviousPage) {<text>disabled</text>}">
+            <a class="page-link" asp-action="Index" asp-route-id="@Model.PreviousPage">Previous</a>
+        </li>
+        @for (int i = Model.Page - 2; i < Model.Page; i++)
+        {
+            if (i > 0)
+            {
+        <li class="page-item">
+            <a class="page-link" asp-action="Index" asp-route-id="@i">@i</a>
+        </li>
+            }
+
+        }
+        <li class="page-item">
+            <a class="page-link" href="#">@Model.Page</a>
+        </li>
+        @for (int i = Model.Page + 1; i <= Model.Page + 2; i++)
+        {
+            if (i <= Model.PageCount)
+            {
+        <li class="page-item">
+            <a class="page-link" asp-action="Index"  asp-route-id="@i">@i</a>
+        </li>
+            }
+        }
+        <li class="page-item @if (!Model.HasNextPage) {<text>disabled</text>}">
+            <a class="page-link" asp-action="Index" asp-route-id="@Model.NextPage">Next</a>
+        </li>
+    </ul>
+
+    <br />
+    <br />
+    <br />

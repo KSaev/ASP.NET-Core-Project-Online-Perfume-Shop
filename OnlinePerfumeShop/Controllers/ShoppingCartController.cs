@@ -31,7 +31,7 @@ namespace OnlinePerfumeShop.Controllers
         {
             cartService.AddProductToCart(perfumeId, userId);
 
-            return RedirectToAction("All", "Perfumes");
+            return Redirect("/");
         }
 
         public IActionResult Remove(int perfumeId) 
