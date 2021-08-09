@@ -10,52 +10,55 @@
 
 <h3 class="col-md-5 offset-md-3 text-center">@this.ViewData["Title"]</h3>
 
-<form method="post" class="col-md-7 offset-md-2">
-    <div class="form-group">
-        <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Price"></label>
-        <input asp-for="Price" class="form-control" />
-        <span asp-validation-for="Price" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="ImageUrl"></label>
-        <input asp-for="ImageUrl" class="form-control" />
-        <span asp-validation-for="ImageUrl" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Description"></label>
-        <textarea asp-for="Description" class="form-control" rows="4"></textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="CategoryId"></label>
-        <select asp-for="CategoryId" class="form-control">
-            @foreach (var item in Model.Categories)
-            {
-                <option value="@item.Id">@item.Name</option>
-            }
-        </select>
-    </div>
-    <div class="form-group">
-        <label asp-for="BrandId"></label>
-        <select asp-for="BrandId" class="form-control">
-            @foreach (var item in Model.Brands)
-            {
-                <option value="@item.Id">@item.Name</option>
-            }
-        </select>
-    </div>
-    <div class="form-group">
-        <label asp-for="Quantity"></label>
-        <select asp-for="Quantity" class="form-control">
-            <option value="50">50 ml</option>
-            <option value="100">100 ml</option>
-            <option value="200">200 ml</option>
-        </select>
-    </div>
-    <input type="submit" class="btn-dark" />
-</form>
+
+
+
+    <form method="post" class="col-md-7 offset-md-2">
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ImageUrl"></label>
+            <input asp-for="ImageUrl" class="form-control" />
+            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CategoryId"></label>
+            <select asp-for="CategoryId" class="form-control">
+                @foreach (var item in Model.Categories)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="BrandId"></label>
+            <select asp-for="BrandId" class="form-control">
+                @foreach (var item in Model.Brands)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Quantity"></label>
+            <select asp-for="Quantity" class="form-control">
+                <option value="50">50 ml</option>
+                <option value="100">100 ml</option>
+                <option value="200">200 ml</option>
+            </select>
+        </div>
+        <input type="submit" class="btn-dark" />
+    </form>

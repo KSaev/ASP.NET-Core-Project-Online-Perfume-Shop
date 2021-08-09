@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using OnlinePerfumeShop.Data.Models;
 using OnlinePerfumeShop.Models.Perfumes;
 using OnlinePerfumeShop.Services.Perfumes;
-using System.Security.Claims;
+using OnlinePerfumeShop.Infrastructure;
+
+using static OnlinePerfumeShop.Areas.AdminConstants;
 
 namespace OnlinePerfumeShop.Controllers
 {
@@ -17,7 +17,7 @@ namespace OnlinePerfumeShop.Controllers
             this.service = service;
         }
 
-        [Authorize]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Add() => View(new AddPerfumeInputModel
 
         {
@@ -28,7 +28,7 @@ namespace OnlinePerfumeShop.Controllers
         
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Add(AddPerfumeInputModel model) 
         {
 
@@ -51,9 +51,10 @@ namespace OnlinePerfumeShop.Controllers
 
             return Redirect("/");
         }         
+
         public IActionResult Details(int id)
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = this.User.GetUserId();
 
             var viewModel = service.GetDetails(id, userId);
 

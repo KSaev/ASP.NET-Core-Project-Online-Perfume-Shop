@@ -1,13 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using OnlinePerfumeShop.Models.ShoppingCarts;
-using OnlinePerfumeShop.Services.Perfumes;
+using OnlinePerfumeShop.Infrastructure;
 using OnlinePerfumeShop.Services.ShoppingCart;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace OnlinePerfumeShop.Controllers
 {
@@ -22,8 +16,15 @@ namespace OnlinePerfumeShop.Controllers
         }
         public IActionResult Index() 
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = this.User.GetUserId();
+      
+            if (this.IsNotAnAuthorize(userId))
+            {
+                return Unauthorized();
+            }
+
             var viewModel = cartService.GetViewModel(userId);
+            
 
             return View(viewModel);
         }
@@ -31,12 +32,22 @@ namespace OnlinePerfumeShop.Controllers
         {
             cartService.AddProductToCart(perfumeId, userId);
 
+            if (this.IsNotAnAuthorize(userId))
+            {
+                return Unauthorized();
+            }
+
             return Redirect("/");
         }
 
         public IActionResult Remove(int perfumeId) 
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = this.User.GetUserId();
+
+            if (this.IsNotAnAuthorize(userId))
+            {
+                return Unauthorized();
+            }
 
             this.cartService.RemovePerfume(perfumeId, userId);
 
@@ -45,11 +56,26 @@ namespace OnlinePerfumeShop.Controllers
 
         public IActionResult Delete() 
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = this.User.GetUserId();
+
+            if (this.IsNotAnAuthorize(userId))
+            {
+                return Unauthorized();
+            }
 
             this.cartService.Delete(userId);
 
             return Redirect("/ShoppingCart/");
+        }
+
+        private bool IsNotAnAuthorize(string userId)
+        {
+            if (this.User.GetUserId() != userId)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
