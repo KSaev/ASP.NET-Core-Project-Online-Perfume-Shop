@@ -1,8 +1,12 @@
-﻿@model AddPerfumeInputModel 
+﻿@model AddPerfumeInputModel
 @{
     this.ViewData["Title"] = "Add new perfume";
 
- }
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/Perfumes/add.css" asp-append-version="true" />
+}
 
 <h3 class="col-md-5 offset-md-3 text-center">@this.ViewData["Title"]</h3>
 
