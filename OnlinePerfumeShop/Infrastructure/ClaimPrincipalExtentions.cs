@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-using static OnlinePerfumeShop.Areas.AdminConstants;
+using static OnlinePerfumeShop.Area.Admin.AdminConstants;
 
 namespace OnlinePerfumeShop.Infrastructure
 {

@@ -1,5 +1,4 @@
 ﻿using OnlinePerfumeShop.Data;
-using OnlinePerfumeShop.Data.Models;
 using OnlinePerfumeShop.Services.Models;
 using System.Collections.Generic;
 using System.Linq;

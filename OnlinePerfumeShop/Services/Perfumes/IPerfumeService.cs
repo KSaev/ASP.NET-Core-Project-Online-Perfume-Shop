@@ -9,7 +9,7 @@ namespace OnlinePerfumeShop.Services.Perfumes
 {
     public interface IPerfumeService
     {
-        PerfumeDetailsServiceModel GetDetails(int id, string userId);             
+        PerfumeDetailsServiceModel GetDetails(int id);             
 
         void Create(string name
             ,string desctription
@@ -21,6 +21,8 @@ namespace OnlinePerfumeShop.Services.Perfumes
 
         public IEnumerable<GetCategoriesServiceModel> GetCategories();
 
-        public IEnumerable<GetBrandsServiceModel> GetBrands();        
+        public IEnumerable<GetBrandsServiceModel> GetBrands();
+
+        public void Delete(int id);
     }
 }

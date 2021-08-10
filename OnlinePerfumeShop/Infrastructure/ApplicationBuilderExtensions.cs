@@ -8,7 +8,7 @@ using System;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 
-using static OnlinePerfumeShop.Areas.AdminConstants;
+using static OnlinePerfumeShop.Area.Admin.AdminConstants;
 
 
 namespace OnlinePerfumeShop.Infrastructure

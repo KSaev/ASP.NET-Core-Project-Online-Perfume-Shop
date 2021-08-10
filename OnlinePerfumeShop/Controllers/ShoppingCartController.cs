@@ -18,7 +18,7 @@ namespace OnlinePerfumeShop.Controllers
         {
             var userId = this.User.GetUserId();
       
-            if (this.IsNotAnAuthorize(userId))
+            if (this.IsNotAnAuthorize(userId) && !User.IsAdministrator())
             {
                 return Unauthorized();
             }
@@ -28,11 +28,13 @@ namespace OnlinePerfumeShop.Controllers
 
             return View(viewModel);
         }
-        public IActionResult Add(int perfumeId, string userId)
+        public IActionResult Add(int perfumeId)
         {
+            var userId = this.User.GetUserId();
+
             cartService.AddProductToCart(perfumeId, userId);
 
-            if (this.IsNotAnAuthorize(userId))
+            if (this.IsNotAnAuthorize(userId) && !User.IsAdministrator())
             {
                 return Unauthorized();
             }
@@ -44,7 +46,7 @@ namespace OnlinePerfumeShop.Controllers
         {
             var userId = this.User.GetUserId();
 
-            if (this.IsNotAnAuthorize(userId))
+            if (this.IsNotAnAuthorize(userId) && !User.IsAdministrator())
             {
                 return Unauthorized();
             }
@@ -58,7 +60,7 @@ namespace OnlinePerfumeShop.Controllers
         {
             var userId = this.User.GetUserId();
 
-            if (this.IsNotAnAuthorize(userId))
+            if (this.IsNotAnAuthorize(userId) && !User.IsAdministrator())
             {
                 return Unauthorized();
             }

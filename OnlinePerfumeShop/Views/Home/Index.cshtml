@@ -28,9 +28,22 @@ else
                             <a class="text-muted" data-abc="true">@item.Quantity ml</a>
                             <h3 class="mb-0 font-weight-semibold">@item.Price лв</h3>
                             <br />
-                            <td>
-                                <a class="btn btn-dark fa fa-cart-plus mr-2 align-bottom" href="/Perfumes/Details?id=@item.Id">View Details</a>
-                            </td>
+                            @if (this.User.IsAdministrator())
+                            {
+                                <td>
+                                    <a class="btn btn-outline-danger mr-2 align-bottom" asp-area="Admin" asp-action="Delete" asp-controller="Perfumes" asp-route-id="@item.Id" asp-route-page="@Model.Page">Delete</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-info mr-2 align-bottom" asp-area="Admin" asp-action="Edit" asp-controller="Perfumes">Edit</a>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <a class="btn btn-dark fa fa-cart-plus mr-2 align-bottom" href="/Perfumes/Details?id=@item.Id">View Details</a>
+                                </td>
+                            }
+
                         </div>
                     </div>
                 </div>

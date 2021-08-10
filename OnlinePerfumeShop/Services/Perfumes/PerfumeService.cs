@@ -40,7 +40,7 @@ namespace OnlinePerfumeShop.Services.Perfumes
             dbContext.SaveChanges();
         }
 
-        public PerfumeDetailsServiceModel GetDetails(int id, string userId) 
+        public PerfumeDetailsServiceModel GetDetails(int id) 
         {
             return dbContext.Perfumes
                .Where(x => x.Id == id)
@@ -54,7 +54,6 @@ namespace OnlinePerfumeShop.Services.Perfumes
                    Quantity = x.Qunatity,
                    ImgUrl = x.ImageUrl,
                    Category = x.Category.Name,
-                   UserId = userId,
                })
                .FirstOrDefault();
         }   
@@ -81,6 +80,18 @@ namespace OnlinePerfumeShop.Services.Perfumes
                })
                .OrderBy(x => x.Name)
                .ToList();
-        }      
+        }
+
+        public void Delete(int id)
+        {
+            var perfume = this.dbContext.Perfumes.Where(x => x.Id == id).FirstOrDefault();
+            if (perfume == null)
+            {
+                return;
+            }
+
+            dbContext.Perfumes.Remove(perfume);
+            dbContext.SaveChanges();
+        }
     }
 }
