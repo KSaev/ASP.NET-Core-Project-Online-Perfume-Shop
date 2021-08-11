@@ -34,7 +34,7 @@ else
                                     <a class="btn btn-outline-danger mr-2 align-bottom" asp-area="Admin" asp-action="Delete" asp-controller="Perfumes" asp-route-id="@item.Id" asp-route-page="@Model.Page">Delete</a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-info mr-2 align-bottom" asp-area="Admin" asp-action="Edit" asp-controller="Perfumes">Edit</a>
+                                    <a class="btn btn-info mr-2 align-bottom" asp-area="Admin" asp-action="Edit" asp-controller="Perfumes" asp-route-id="@item.Id">Edit</a>
                                 </td>
                             }
                             else

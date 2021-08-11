@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace OnlinePerfumeShop.Areas.Admin.Models.Perfumes
 {
-    public class EditPerfumeInputModel
+    public class EditPerfumeInputModel : BasePerfumeInputModel
     {
+        public int Id { get; set; }
     }
 }

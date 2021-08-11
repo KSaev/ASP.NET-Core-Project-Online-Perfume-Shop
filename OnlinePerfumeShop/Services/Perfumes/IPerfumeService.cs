@@ -1,6 +1,6 @@
-﻿using OnlinePerfumeShop.Data.Models;
+﻿using OnlinePerfumeShop.Areas.Admin.Models.Perfumes;
+using OnlinePerfumeShop.Data.Models;
 using OnlinePerfumeShop.Services.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,10 +19,12 @@ namespace OnlinePerfumeShop.Services.Perfumes
             ,int quantity
             ,int brandId);
 
+        public IQueryable<Perfume> GetById(int id);
         public IEnumerable<GetCategoriesServiceModel> GetCategories();
 
         public IEnumerable<GetBrandsServiceModel> GetBrands();
 
+        void Update(int id,EditPerfumeInputModel model);
         public void Delete(int id);
     }
 }

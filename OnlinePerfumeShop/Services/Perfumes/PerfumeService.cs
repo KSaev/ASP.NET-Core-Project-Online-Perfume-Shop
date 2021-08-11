@@ -1,4 +1,5 @@
-﻿using OnlinePerfumeShop.Data;
+﻿using OnlinePerfumeShop.Areas.Admin.Models.Perfumes;
+using OnlinePerfumeShop.Data;
 using OnlinePerfumeShop.Data.Models;
 using OnlinePerfumeShop.Services.Models;
 using System;
@@ -91,6 +92,26 @@ namespace OnlinePerfumeShop.Services.Perfumes
             }
 
             dbContext.Perfumes.Remove(perfume);
+            dbContext.SaveChanges();
+        }
+
+        public IQueryable<Perfume> GetById(int id)
+        {
+            return this.dbContext.Perfumes.Where(x => x.Id == id);
+        }
+
+        public void Update(int id, EditPerfumeInputModel model)
+        {
+            var perfume = this.GetById(id).FirstOrDefault();
+
+            perfume.Name = model.Name;
+            perfume.Desctription = model.Description;
+            perfume.ImageUrl = model.ImageUrl;
+            perfume.CategoryId = model.CategoryId;
+            perfume.BrandId = model.BrandId;
+            perfume.Price = model.Price;
+            perfume.Qunatity = model.Quantity;
+
             dbContext.SaveChanges();
         }
     }

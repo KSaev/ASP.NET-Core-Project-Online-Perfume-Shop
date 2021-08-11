@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlinePerfumeShop.Areas.Admin.Models.Perfumes;
 using OnlinePerfumeShop.Services.Perfumes;
+using System.Linq;
 
 
 namespace OnlinePerfumeShop.Areas.Admin.Controllers
@@ -46,7 +47,46 @@ namespace OnlinePerfumeShop.Areas.Admin.Controllers
             return Redirect("/");
         }
 
-        public IActionResult Edit() => View();
+       
+        public IActionResult Edit(int id)
+        {
+            var perfume = service.GetById(id);
+
+            var inputModel = perfume.Select(x => new EditPerfumeInputModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Desctription,
+                Price = x.Price,
+                ImageUrl = x.ImageUrl,
+                CategoryId = x.CategoryId,
+                BrandId = x.BrandId,
+                Quantity = x.Qunatity,
+            }).FirstOrDefault();
+
+            inputModel.Categories = service.GetCategories();
+            inputModel.Brands = service.GetBrands();
+            inputModel.Id = id;
+
+            return View(inputModel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id,EditPerfumeInputModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+
+                input.Categories = service.GetCategories();
+                input.Brands = service.GetBrands();
+                input.Id = id;
+                return View(input);
+            }
+
+            this.service.Update(id, input);
+
+            return Redirect($"/Perfumes/Details/{id}");
+        }
 
         public IActionResult Delete(int id,int page)
         {
