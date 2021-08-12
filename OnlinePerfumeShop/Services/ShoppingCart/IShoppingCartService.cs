@@ -12,5 +12,6 @@ namespace OnlinePerfumeShop.Services.ShoppingCart
         public IEnumerable<ShoppingCartServiceModel> GetViewModel(string userId);
         public void RemovePerfume(int perfumeId, string userId);
         public void Delete(string userId);
+        public decimal GetTotalPrice(string userId);
     }
 }

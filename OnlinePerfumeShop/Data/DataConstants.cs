@@ -13,5 +13,9 @@
         public const int BrandNameMinLenght = 3;
         public const int BrandNameMaxLenght = 20;
         public const int UserFullNameMaxLenght = 8;
+        public const int OrderAdressMinLenght = 15;
+        public const int OrderSupplierMinLenght = 8;
+        public const int OrderSreetMinLenght = 5;
+        
     }
 }

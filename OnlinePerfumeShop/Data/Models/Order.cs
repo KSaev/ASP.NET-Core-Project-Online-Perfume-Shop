@@ -1,24 +1,27 @@
-﻿using OnlinePerfumeShop.Data.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-
+using System.Linq;
+using System.Threading.Tasks;
 using static OnlinePerfumeShop.Data.DataConstants;
 
-namespace OnlinePerfumeShop.Models.Order
+namespace OnlinePerfumeShop.Data.Models
 {
-    public class OrderInputModel
+    public class Order
     {
-        public DateTime OrderDate => DateTime.UtcNow;
+        public Order()
+        {
+            this.OrderPerfumes = new HashSet<OrderPerfume>();
+        }
+        public int Id { get; set; }
+        public DateTime OrderDate { get; set; }
 
         [Required]
         [MinLength(OrderAdressMinLenght)]
-        [Display( Name = "Address")]
         public string OrderAddress { get; set; }
 
         [Required]
         [RegularExpression("[0-9]{4}")]
-        [Display(Name = "Zip code")]
         public string ZipCode { get; set; }
 
         [Required]
@@ -30,10 +33,8 @@ namespace OnlinePerfumeShop.Models.Order
         public string Supplier { get; set; }
 
         [Required]
-        [RegularExpression("[0-9]{10}")]
-        [Display(Name = "Phonenumber")]
-        public string PhoneNumber { get; set; }
-
-        public decimal TotalPrice { get; set; }
+        public string UserId { get; set; }
+        public User User { get; set; }
+        public ICollection<OrderPerfume> OrderPerfumes { get; set; }
     }
 }

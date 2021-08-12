@@ -13,13 +13,11 @@ namespace OnlinePerfumeShop.Data
         {
         }
         public DbSet<Perfume> Perfumes { get; init; }
-
         public DbSet<Category> Categories { get; init; }
-
         public DbSet<Brand> Brands { get; set; }
-
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
-
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderPerfume> OrderPerfumes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -37,6 +35,9 @@ namespace OnlinePerfumeShop.Data
 
             builder.Entity<ShoppingCart>()
                 .HasKey(x => new { x.PerfumeId, x.UserId });
+
+            builder.Entity<OrderPerfume>()
+                .HasKey(x => new { x.OrderId, x.PerfumeId});
 
             base.OnModelCreating(builder);
         }

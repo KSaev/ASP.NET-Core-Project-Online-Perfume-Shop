@@ -110,5 +110,18 @@ namespace OnlinePerfumeShop.Services.ShoppingCart
             }
             dbContext.SaveChanges();
         }
+
+        public decimal GetTotalPrice(string userId)
+        {
+            var shoppingCart = this.dbContext.ShoppingCarts.Where(x => x.UserId == userId).ToList();
+
+            var total = 0M;
+            foreach (var item in shoppingCart)
+            {
+                var perfumePrice = this.dbContext.Perfumes.FirstOrDefault(x => x.Id == item.PerfumeId).Price;
+                total += perfumePrice * item.Quantity;
+            }
+            return total;
+        }
     }
 }

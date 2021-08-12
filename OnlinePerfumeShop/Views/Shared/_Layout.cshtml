@@ -25,6 +25,9 @@
                                 <a class="nav-link text-dark" asp-area="Admin" asp-controller="Perfumes" asp-action="Add">Add Perfume</a>
                             </li>
                         }
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="Finish">Finish</a>
+                        </li>
                     </ul>
                     <partial name="_LoginPartial" />
                     @if (!this.User.IsInRole("Administrator"))
@@ -41,10 +44,12 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; @DateTime.UtcNow.Year - Parfiumo
+    <footer class="border-top footer text-muted text-center">
+        <div class="text-muted text-right text-center">
+            &copy; Made by
+            <a href="https://github.com/konstantinsaev">Konstantin Saev</a>
         </div>
+      
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

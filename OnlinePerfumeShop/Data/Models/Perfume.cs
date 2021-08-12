@@ -5,7 +5,12 @@ using static OnlinePerfumeShop.Data.DataConstants;
 namespace OnlinePerfumeShop.Data.Models
 {
     public class Perfume
-    {     
+    {
+        public Perfume()
+        {
+            this.OrderPerfumes= new HashSet<OrderPerfume>();
+        }
+
         public int Id { get; init; }
 
         [Required]
@@ -32,6 +37,8 @@ namespace OnlinePerfumeShop.Data.Models
         public int BrandId { get; set; }
 
         public Brand Brand { get; set; }
+
+        public ICollection<OrderPerfume> OrderPerfumes { get; set; }
 
     }
 }
