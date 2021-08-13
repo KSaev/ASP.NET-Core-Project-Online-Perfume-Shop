@@ -19,13 +19,9 @@ namespace OnlinePerfumeShop.Controllers
             this.cartService = cartService;
         }
 
-        public IActionResult Finish() 
-        {
-            var userId = this.User.GetUserId();
-            var model = orderService.Finish(userId);
+        public IActionResult Finish() => View();
 
-            return View(model);
-        }
+        [Authorize]
         public IActionResult Buy() => View(new OrderInputModel 
         {
             TotalPrice = this.cartService.GetTotalPrice(this.User.GetUserId()),
@@ -51,7 +47,7 @@ namespace OnlinePerfumeShop.Controllers
             orderService.MakeOrder(userId,input);
             this.cartService.Delete(userId);
 
-            return Redirect("/");
+            return RedirectToAction("Finish","Orders");
 
         }
 

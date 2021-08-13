@@ -7,70 +7,71 @@
 }
 
 
-<div class="container register-form">
-    <div class="form">
-        <div class="form-content">
-            <br />
-            <h3 class="text-center text-info">Select delivery address</h3>
-            <hr />
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="OrderAddress"></label>
-                        <input type="text" class="form-control" placeholder="Your Address *" asp-for="OrderAddress" />
-                        <span asp-validation-for="OrderAddress" class="text-danger"></span>
+<form method="post">
+    <div class="container register-form">
+        <div class="form">
+            <div class="form-content">
+                <br />
+                <h3 class="text-center text-info">Select delivery address</h3>
+                <hr />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="OrderAddress"></label>
+                            <input type="text" class="form-control" placeholder="Your Address *" asp-for="OrderAddress" />
+                            <span asp-validation-for="OrderAddress" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Street"></label>
+                            <input type="text" class="form-control" placeholder="Your Street *" asp-for="Street" />
+                            <span asp-validation-for="Street" class="text-danger"></span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="Street"></label>
-                        <input type="text" class="form-control" placeholder="Your Street *" asp-for="Street" />
-                        <span asp-validation-for="Street" class="text-danger"></span>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="ZipCode"></label>
+                            <input type="text" class="form-control" placeholder="Zip Code *" asp-for="ZipCode" />
+                            <span asp-validation-for="ZipCode" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PhoneNumber"></label>
+                            <input type="text" class="form-control" placeholder="Your Phonenumber *" asp-for="PhoneNumber" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="ZipCode"></label>
-                        <input type="text" class="form-control" placeholder="Zip Code *" asp-for="ZipCode" />
-                        <span asp-validation-for="ZipCode" class="text-danger"></span>
+                <br />
+                <h3 class="text-center text-info">Select delivery method</h3>
+                <hr />
+                <div class="form-group">
+                    <label asp-for="Supplier"></label>
+                    <select asp-for="Supplier" class="form-control">
+                        <option value="Speedy">Speedy</option>
+                        <option value="Econt">Econt</option>
+                    </select>
+                </div>
+                <br />
+                <h3 class="text-center text-info">Total for peymant</h3>
+                <hr />
+                <div class="product_meta">
+                    <div class="col-md-2">
+                        <span class="posted_in"> <strong>Total:</strong> <a>@Model.TotalPrice лв</a></span>
+                        <hr />
                     </div>
-                    <div class="form-group">
-                        <label asp-for="PhoneNumber"></label>
-                        <input type="text" class="form-control" placeholder="Your Phonenumber *" asp-for="PhoneNumber" />
-                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    <div class="col-md-3">
+                        <span class="tagged_as"><strong>Price for delivery:</strong> <a>5 лв</a></span>
+                        <hr />
+                    </div>
+                    <div class="col-md-4">
+                        <span class="tagged_as"><strong>Total with delivery:</strong> <a>@(Model.TotalPrice + 5) лв</a></span>
+                        <hr />
                     </div>
                 </div>
+                <br />
+                <input type="submit" class="btn btn-info" value="Finish" />
             </div>
-            <br />
-            <h3 class="text-center text-info">Select delivery method</h3>
-            <hr />
-            <div class="form-group">
-                <label asp-for="Supplier"></label>
-                <select asp-for="Supplier" class="form-control">
-                    <option value="Speedy">Speedy</option>
-                    <option value="Econt">Econt</option>
-                </select>
-            </div>
-            <br />
-            <h3 class="text-center text-info">Total for peymant</h3>
-            <hr />
-            <div class="product_meta">
-                <div class="col-md-2">
-                    <span class="posted_in"> <strong>Total:</strong> <a>@Model.TotalPrice лв</a></span>
-                    <hr />
-                </div>
-                <div class="col-md-3">
-                    <span class="tagged_as"><strong>Price for delivery:</strong> <a>5 лв</a></span>
-                    <hr />
-                </div>
-                <div class="col-md-4">
-                    <span class="tagged_as"><strong>Total with delivery:</strong> <a>@(Model.TotalPrice + 5) лв</a></span>
-                    <hr />
-                </div>        
-            </div>
-            <br />
-            <button type="button" class="btnSubmit" asp-controller="Orders" asp-action="Finish">Finish</button>
         </div>
     </div>
-</div>  
-
+</form>
 
 

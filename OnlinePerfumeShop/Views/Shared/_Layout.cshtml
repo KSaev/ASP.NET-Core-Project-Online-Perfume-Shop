@@ -25,9 +25,6 @@
                                 <a class="nav-link text-dark" asp-area="Admin" asp-controller="Perfumes" asp-action="Add">Add Perfume</a>
                             </li>
                         }
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="Finish">Finish</a>
-                        </li>
                     </ul>
                     <partial name="_LoginPartial" />
                     @if (!this.User.IsInRole("Administrator"))

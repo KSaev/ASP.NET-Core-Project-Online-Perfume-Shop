@@ -11,6 +11,5 @@ namespace OnlinePerfumeShop.Services.Orders
     {
         public void MakeOrder(string userId,OrderInputModel inputModel);
 
-        public FinishOrderViewModel Finish(string userId);
     }
 }

@@ -17,27 +17,6 @@ namespace OnlinePerfumeShop.Services.Orders
             this.dbContext = dbContext;
         }
 
-        public FinishOrderViewModel Finish(string userId)
-        {
-            return this.dbContext.Orders.Where(x => x.UserId == userId).Select(x => new FinishOrderViewModel
-            {
-                UserName = x.User.UserName,
-                Address = x.OrderAddress,
-                Phone = x.User.PhoneNumber,
-                Street = x.Street,
-                ZipCode = x.ZipCode,
-                Perfumes = x.OrderPerfumes.Select(p => new PefumesOrderList
-                {
-                    Price = p.Perfume.Price,
-                    Quantity = p.Perfume.Qunatity,
-                    Name = p.Perfume.Name,
-                    Total = p.Perfume.Price * p.Perfume.Qunatity,
-                }
-                ).ToList()
-                
-            }).FirstOrDefault();
-        }
-
         public void MakeOrder(string userId,OrderInputModel inputModel)
         {
             var order = new Order
