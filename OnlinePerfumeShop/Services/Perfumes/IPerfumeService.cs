@@ -21,7 +21,11 @@
         public int GetWomenCount();
         public int GetMenCount();
         public IEnumerable<ListPerfumesServiceModel> Men(int page, int itemsPerPage);
+        public IEnumerable<ListPerfumesServiceModel> MenAscending(int page, int itemsPerPage);
+        public IEnumerable<ListPerfumesServiceModel> MenDescending(int page, int itemsPerPage);
         public IEnumerable<ListPerfumesServiceModel> Women(int page, int itemsPerPage);
+        public IEnumerable<ListPerfumesServiceModel> WomenAscending(int page, int itemsPerPage);
+        public IEnumerable<ListPerfumesServiceModel> WomenDescending(int page, int itemsPerPage);
         public IQueryable<Perfume> GetById(int id);
         public IEnumerable<GetCategoriesServiceModel> GetCategories();
 

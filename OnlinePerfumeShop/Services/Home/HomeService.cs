@@ -28,6 +28,39 @@
                     Quantity = x.Qunatity,
                 }).ToList();
         }
+
+        public IEnumerable<ListPerfumesServiceModel> AllDescending(int page, int itemsPerPage)
+        {
+            return dbContext.Perfumes
+              .OrderByDescending(x => x.Price)
+              .Skip((page - 1) * itemsPerPage)
+              .Take(itemsPerPage)
+              .Select(x => new ListPerfumesServiceModel
+              {
+                  Id = x.Id,
+                  Name = x.Name,
+                  Price = x.Price,
+                  ImgUrl = x.ImageUrl,
+                  Quantity = x.Qunatity,
+              }).ToList();
+        }
+
+        public IEnumerable<ListPerfumesServiceModel> AllAscending(int page, int itemsPerPage)
+        {
+            return dbContext.Perfumes
+             .OrderBy(x => x.Price)
+             .Skip((page - 1) * itemsPerPage)
+             .Take(itemsPerPage)
+             .Select(x => new ListPerfumesServiceModel
+             {
+                 Id = x.Id,
+                 Name = x.Name,
+                 Price = x.Price,
+                 ImgUrl = x.ImageUrl,
+                 Quantity = x.Qunatity,
+             }).ToList();
+        }
+
         public int GetCount()
         {
             return dbContext.Perfumes.Count();

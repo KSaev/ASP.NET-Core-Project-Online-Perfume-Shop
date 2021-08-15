@@ -1,12 +1,12 @@
 ﻿@model ListPerfumeViewModel
 @{
-    this.ViewData["Title"] = "All perfumes";
+    this.ViewData["Title"] = "All perfumes ascending";
 }
 
 @section Styles{
     <link rel="stylesheet" href="~/css/Home/all.css" asp-append-version="true" />
 }
-@if (Model.Page > Model.WomenPageCount)
+@if (Model.Page > Model.PageCount)
 {
     <partial name="_IncorrectPagePartial" />
 }
@@ -18,11 +18,12 @@ else
             Sorting by
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <a class="dropdown-item" href="/Perfumes/Women?id=1">Newest</a>
-            <a class="dropdown-item" href="/Perfumes/WomenDescending?id=1">Descending</a>
-            <a class="dropdown-item" href="/Perfumes/WomenAscending?id=1">Ascending</a>
+            <a class="dropdown-item" href="/Home/Index?id=1">Newest</a>
+            <a class="dropdown-item" href="/Home/Descending?id=1">Descending</a>
+            <a class="dropdown-item" href="/Home/Ascending?id=1">Ascending</a>
         </div>
     </div>
+
     <div class="container d-flex justify-content-center mt-50 mb-50">
         <div class="row">
             @foreach (var item in this.Model.Perfumes)
@@ -63,4 +64,4 @@ else
     </div>
 }
 
-<partial name="_WomePaginationPartial" model="@Model" />
+<partial name="_PaginationAscendingPartial" model="@Model" />

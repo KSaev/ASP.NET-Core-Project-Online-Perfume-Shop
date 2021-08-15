@@ -35,6 +35,36 @@
 
             return View(perfumes);
         }
+        public IActionResult MenDescending(int id)
+        {
+            var itemsPerPage = 12;
+
+            var perfumes = new ListPerfumeViewModel
+            {
+                Perfumes = service.MenDescending(id, itemsPerPage),
+                Page = id,
+                MenPerfumeCount = service.GetMenCount(),
+                ItemsPerPage = itemsPerPage,
+            };
+
+
+            return View(perfumes);
+        }
+        public IActionResult MenAscending(int id)
+        {
+            var itemsPerPage = 12;
+
+            var perfumes = new ListPerfumeViewModel
+            {
+                Perfumes = service.MenAscending(id, itemsPerPage),
+                Page = id,
+                MenPerfumeCount = service.GetMenCount(),
+                ItemsPerPage = itemsPerPage,
+            };
+
+
+            return View(perfumes);
+        }
         public IActionResult Women(int id = 1)
         {
             var itemsPerPage = 12;
@@ -42,6 +72,38 @@
             var perfumes = new ListPerfumeViewModel
             {
                 Perfumes = service.Women(id, itemsPerPage),
+                Page = id,
+                PerfumeCount = service.GetCount(),
+                WomenPerfumeCount = service.GetWomenCount(),
+                ItemsPerPage = itemsPerPage,
+            };
+
+
+            return View(perfumes);
+        }
+        public IActionResult WomenDescending(int id)
+        {
+            var itemsPerPage = 12;
+
+            var perfumes = new ListPerfumeViewModel
+            {
+                Perfumes = service.WomenDescending(id, itemsPerPage),
+                Page = id,
+                PerfumeCount = service.GetCount(),
+                WomenPerfumeCount = service.GetWomenCount(),
+                ItemsPerPage = itemsPerPage,
+            };
+
+
+            return View(perfumes);
+        }
+        public IActionResult WomenAscending(int id)
+        {
+            var itemsPerPage = 12;
+
+            var perfumes = new ListPerfumeViewModel
+            {
+                Perfumes = service.WomenAscending(id, itemsPerPage),
                 Page = id,
                 PerfumeCount = service.GetCount(),
                 WomenPerfumeCount = service.GetWomenCount(),

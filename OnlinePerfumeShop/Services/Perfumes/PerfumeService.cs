@@ -156,5 +156,73 @@
 
             dbContext.SaveChanges();
         }
+
+        public IEnumerable<ListPerfumesServiceModel> MenAscending(int page, int itemsPerPage)
+        {
+            return dbContext.Perfumes
+             .Where(x => x.CategoryId == 1)
+             .OrderBy(x => x.Price)
+             .Skip((page - 1) * itemsPerPage)
+             .Take(itemsPerPage)
+             .Select(x => new ListPerfumesServiceModel
+             {
+                 Id = x.Id,
+                 Name = x.Name,
+                 Price = x.Price,
+                 ImgUrl = x.ImageUrl,
+                 Quantity = x.Qunatity,
+             }).ToList();
+        }
+
+        public IEnumerable<ListPerfumesServiceModel> MenDescending(int page, int itemsPerPage)
+        {
+            return dbContext.Perfumes
+           .Where(x => x.CategoryId == 1)
+           .OrderByDescending(x => x.Price)
+           .Skip((page - 1) * itemsPerPage)
+           .Take(itemsPerPage)
+           .Select(x => new ListPerfumesServiceModel
+           {
+               Id = x.Id,
+               Name = x.Name,
+               Price = x.Price,
+               ImgUrl = x.ImageUrl,
+               Quantity = x.Qunatity,
+           }).ToList();
+        }
+
+        public IEnumerable<ListPerfumesServiceModel> WomenAscending(int page, int itemsPerPage)
+        {
+            return dbContext.Perfumes
+              .Where(x => x.CategoryId == 2)
+              .OrderBy(x => x.Price)
+              .Skip((page - 1) * itemsPerPage)
+              .Take(itemsPerPage)
+              .Select(x => new ListPerfumesServiceModel
+              {
+                  Id = x.Id,
+                  Name = x.Name,
+                  Price = x.Price,
+                  ImgUrl = x.ImageUrl,
+                  Quantity = x.Qunatity,
+              }).ToList();
+        }
+
+        public IEnumerable<ListPerfumesServiceModel> WomenDescending(int page, int itemsPerPage)
+        {
+            return dbContext.Perfumes
+              .Where(x => x.CategoryId == 2)
+              .OrderByDescending(x => x.Price)
+              .Skip((page - 1) * itemsPerPage)
+              .Take(itemsPerPage)
+              .Select(x => new ListPerfumesServiceModel
+              {
+                  Id = x.Id,
+                  Name = x.Name,
+                  Price = x.Price,
+                  ImgUrl = x.ImageUrl,
+                  Quantity = x.Qunatity,
+              }).ToList();
+        }
     }
 }

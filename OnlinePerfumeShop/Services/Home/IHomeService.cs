@@ -4,8 +4,9 @@
     using System.Collections.Generic;
     public interface IHomeService
     {
-        IEnumerable<ListPerfumesServiceModel> All(int id, int itemsPerPage);
-
+        public IEnumerable<ListPerfumesServiceModel> All(int id, int itemsPerPage);
+        public IEnumerable<ListPerfumesServiceModel> AllDescending(int page, int itemsPerPage);
+        public IEnumerable<ListPerfumesServiceModel> AllAscending(int page, int itemsPerPage);
         public int GetCount();
     }
 }

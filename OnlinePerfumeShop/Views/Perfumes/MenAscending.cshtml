@@ -6,7 +6,7 @@
 @section Styles{
     <link rel="stylesheet" href="~/css/Home/all.css" asp-append-version="true" />
 }
-@if (Model.Page > Model.WomenPageCount)
+@if (Model.Page > Model.MenPageCount)
 {
     <partial name="_IncorrectPagePartial" />
 }
@@ -18,9 +18,9 @@ else
             Sorting by
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <a class="dropdown-item" href="/Perfumes/Women?id=1">Newest</a>
-            <a class="dropdown-item" href="/Perfumes/WomenDescending?id=1">Descending</a>
-            <a class="dropdown-item" href="/Perfumes/WomenAscending?id=1">Ascending</a>
+            <a class="dropdown-item" href="/Perfumes/Men?id=1">Newest</a>
+            <a class="dropdown-item" href="/Perfumes/MenDescending?id=1">Descending</a>
+            <a class="dropdown-item" href="/Perfumes/MenAscending?id=1">Ascending</a>
         </div>
     </div>
     <div class="container d-flex justify-content-center mt-50 mb-50">
@@ -63,4 +63,19 @@ else
     </div>
 }
 
-<partial name="_WomePaginationPartial" model="@Model" />
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @if (!Model.HasPreviousPage) {<text>disabled</text>}">
+            <a class="page-link" asp-controller="Perfumes" asp-action="MenAscending" asp-route-id="@Model.PreviousPage">Previous</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#">@Model.Page</a>
+        </li>
+        <li class="page-item @if (!Model.HasMenNextPage) {<text>disabled</text>}">
+            <a class="page-link" asp-controller="Perfumes" asp-action="MenAscending" asp-route-id="@Model.NextPage">Next</a>
+        </li>
+    </ul>
+
+    <br />
+    <br />
+</nav>
