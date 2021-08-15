@@ -1,12 +1,10 @@
-﻿using OnlinePerfumeShop.Data;
-using OnlinePerfumeShop.Services.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace OnlinePerfumeShop.Services.Home
+﻿namespace OnlinePerfumeShop.Services.Home
 {
+    using System.Linq;
+    using OnlinePerfumeShop.Data;
+    using OnlinePerfumeShop.Services.Models;
+    using System.Collections.Generic;
+
     public class HomeService : IHomeService
     {
         private readonly OnlinePerfumeShopDbContext dbContext;

@@ -1,14 +1,12 @@
-﻿using OnlinePerfumeShop.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-
-using static OnlinePerfumeShop.Data.DataConstants;
-
-namespace OnlinePerfumeShop.Areas.Admin.Models.Perfumes
+﻿namespace OnlinePerfumeShop.Areas.Admin.Models.Perfumes
 {
+    using OnlinePerfumeShop.Services;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
+    using static OnlinePerfumeShop.Data.DataConstants;
+
     public class BasePerfumeInputModel
     {
         [StringLength(PerfumeNameMaxLength, MinimumLength = PerfumeNameMinLength, ErrorMessage = "The name must be between {2} and {1} characters long.")]

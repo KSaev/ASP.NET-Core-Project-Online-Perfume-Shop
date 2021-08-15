@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-
-using static OnlinePerfumeShop.Area.Admin.AdminConstants;
-
-namespace OnlinePerfumeShop.Infrastructure
+﻿namespace OnlinePerfumeShop.Infrastructure
 {
+    using System.Security.Claims;
+
+    using static OnlinePerfumeShop.Area.Admin.AdminConstants;
     public static class ClaimPrincipalExtentions
     {
         public static string GetUserId(this ClaimsPrincipal user) => user.FindFirst(ClaimTypes.NameIdentifier).Value;

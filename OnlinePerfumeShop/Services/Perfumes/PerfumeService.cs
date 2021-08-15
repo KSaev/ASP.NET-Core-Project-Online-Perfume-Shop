@@ -1,14 +1,12 @@
-﻿using OnlinePerfumeShop.Areas.Admin.Models.Perfumes;
-using OnlinePerfumeShop.Data;
-using OnlinePerfumeShop.Data.Models;
-using OnlinePerfumeShop.Services.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace OnlinePerfumeShop.Services.Perfumes
+﻿namespace OnlinePerfumeShop.Services.Perfumes
 {
+    using System.Linq;
+    using OnlinePerfumeShop.Areas.Admin.Models.Perfumes;
+    using OnlinePerfumeShop.Data;
+    using OnlinePerfumeShop.Data.Models;
+    using OnlinePerfumeShop.Services.Models;
+    using System.Collections.Generic;
+
     public class PerfumeService : IPerfumeService
     {
         private readonly OnlinePerfumeShopDbContext dbContext;
@@ -39,6 +37,50 @@ namespace OnlinePerfumeShop.Services.Perfumes
 
             dbContext.Perfumes.Add(perfume);
             dbContext.SaveChanges();
+        }
+        public IEnumerable<ListPerfumesServiceModel> Men(int page, int itemsPerPage)
+        {
+            return dbContext.Perfumes
+                 .Where(x => x.CategoryId == 1)
+                .OrderBy(x => x.Id)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .Select(x => new ListPerfumesServiceModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Price = x.Price,
+                    ImgUrl = x.ImageUrl,
+                    Quantity = x.Qunatity,
+                }).ToList();
+        }
+        public int GetCount()
+        {
+            return dbContext.Perfumes.Count();
+        }
+        public int GetWomenCount()
+        {
+            return dbContext.Perfumes.Where(x => x.CategoryId == 2).Count();
+        }
+        public int GetMenCount()
+        {
+            return dbContext.Perfumes.Where(x => x.CategoryId == 1).Count();
+        }
+        public IEnumerable<ListPerfumesServiceModel> Women(int page, int itemsPerPage)
+        {
+            return dbContext.Perfumes
+                .Where(x => x.CategoryId == 2)
+                .OrderBy(x => x.Id)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .Select(x => new ListPerfumesServiceModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Price = x.Price,
+                    ImgUrl = x.ImageUrl,
+                    Quantity = x.Qunatity,
+                }).ToList();
         }
 
         public PerfumeDetailsServiceModel GetDetails(int id) 

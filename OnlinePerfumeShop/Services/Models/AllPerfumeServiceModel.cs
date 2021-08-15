@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace OnlinePerfumeShop.Services.Models
+﻿namespace OnlinePerfumeShop.Services.Models
 {
+    using System;
+    using System.Collections.Generic;
+
     public class AllPerfumeServiceModel
     {
         public IEnumerable<ListPerfumesServiceModel> Perfumes { get; set; }

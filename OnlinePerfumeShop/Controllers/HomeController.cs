@@ -1,16 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using OnlinePerfumeShop.Models;
-using OnlinePerfumeShop.Models.Perfumes;
-using OnlinePerfumeShop.Services.Home;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace OnlinePerfumeShop.Controllers
+﻿namespace OnlinePerfumeShop.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using OnlinePerfumeShop.Models.Perfumes;
+    using OnlinePerfumeShop.Services.Home;
+
+
     public class HomeController : Controller
     {
         private readonly IHomeService service;

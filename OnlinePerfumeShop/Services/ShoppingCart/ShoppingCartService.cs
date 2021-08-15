@@ -1,10 +1,10 @@
-﻿using OnlinePerfumeShop.Data;
-using OnlinePerfumeShop.Services.Models;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace OnlinePerfumeShop.Services.ShoppingCart
+﻿namespace OnlinePerfumeShop.Services.ShoppingCart
 {
+    using System.Linq;
+    using OnlinePerfumeShop.Data;
+    using OnlinePerfumeShop.Services.Models;
+    using System.Collections.Generic;
+
     public class ShoppingCartService : IShoppingCartService
     {
         private readonly OnlinePerfumeShopDbContext dbContext;

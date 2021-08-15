@@ -1,12 +1,9 @@
-﻿using OnlinePerfumeShop.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-using static OnlinePerfumeShop.Data.DataConstants;
-
-namespace OnlinePerfumeShop.Models.Order
+﻿namespace OnlinePerfumeShop.Models.Order
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
+    using static OnlinePerfumeShop.Data.DataConstants;
     public class OrderInputModel
     {
         public DateTime OrderDate => DateTime.UtcNow;

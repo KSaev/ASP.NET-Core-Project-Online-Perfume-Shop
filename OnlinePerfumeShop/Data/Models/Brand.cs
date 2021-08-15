@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using static OnlinePerfumeShop.Data.DataConstants;
-
-namespace OnlinePerfumeShop.Data.Models
+﻿namespace OnlinePerfumeShop.Data.Models
 {
+    using System.Collections.Generic;
     public class Brand
     {
         public Brand()

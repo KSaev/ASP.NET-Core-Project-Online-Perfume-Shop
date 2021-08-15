@@ -1,18 +1,16 @@
-﻿using System.Linq;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using OnlinePerfumeShop.Data;
-using OnlinePerfumeShop.Data.Models;
-using System;
-using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
-
-using static OnlinePerfumeShop.Area.Admin.AdminConstants;
-
-
-namespace OnlinePerfumeShop.Infrastructure
+﻿namespace OnlinePerfumeShop.Infrastructure
 {
+    using System.Linq;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.DependencyInjection;
+    using OnlinePerfumeShop.Data;
+    using OnlinePerfumeShop.Data.Models;
+    using System;
+    using Microsoft.AspNetCore.Identity;
+    using System.Threading.Tasks;
+
+    using static OnlinePerfumeShop.Area.Admin.AdminConstants;
     public static class ApplicationBuilderExtensions
     {        public static IApplicationBuilder PrepareDatabase(
              this IApplicationBuilder app)

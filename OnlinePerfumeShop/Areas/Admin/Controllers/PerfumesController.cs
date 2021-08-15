@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using OnlinePerfumeShop.Areas.Admin.Models.Perfumes;
-using OnlinePerfumeShop.Services.Perfumes;
-using System.Linq;
-
-
-namespace OnlinePerfumeShop.Areas.Admin.Controllers
+﻿namespace OnlinePerfumeShop.Areas.Admin.Controllers
 {
+    using System.Linq;
+    using Microsoft.AspNetCore.Mvc;
+    using OnlinePerfumeShop.Areas.Admin.Models.Perfumes;
+    using OnlinePerfumeShop.Services.Perfumes;
+    
+
     public class PerfumesController : AdminController
     {
         private readonly IPerfumeService service;

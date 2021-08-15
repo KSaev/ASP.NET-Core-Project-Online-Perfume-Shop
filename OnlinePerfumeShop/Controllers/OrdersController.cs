@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using OnlinePerfumeShop.Infrastructure;
-using OnlinePerfumeShop.Models.Order;
-using OnlinePerfumeShop.Services.Orders;
-using OnlinePerfumeShop.Services.ShoppingCart;
-using System.Linq;
-
-namespace OnlinePerfumeShop.Controllers
+﻿namespace OnlinePerfumeShop.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using OnlinePerfumeShop.Infrastructure;
+    using OnlinePerfumeShop.Models.Order;
+    using OnlinePerfumeShop.Services.Orders;
+    using OnlinePerfumeShop.Services.ShoppingCart;
+
+
     public class OrdersController : Controller
     {
         private readonly IOrderService orderService;

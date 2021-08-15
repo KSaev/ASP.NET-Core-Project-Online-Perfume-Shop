@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using OnlinePerfumeShop.Infrastructure;
-using OnlinePerfumeShop.Services.ShoppingCart;
-
-namespace OnlinePerfumeShop.Controllers
+﻿namespace OnlinePerfumeShop.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using OnlinePerfumeShop.Infrastructure;
+    using OnlinePerfumeShop.Services.ShoppingCart;
+
     [Authorize]
     public class ShoppingCartController : Controller
     {

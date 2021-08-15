@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using static OnlinePerfumeShop.Data.DataConstants;
-
-
-namespace OnlinePerfumeShop.Data.Models
+﻿namespace OnlinePerfumeShop.Data.Models
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using static OnlinePerfumeShop.Data.DataConstants;
+
+
     public class Category
     {
         public Category()

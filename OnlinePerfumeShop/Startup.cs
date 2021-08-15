@@ -1,22 +1,21 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using OnlinePerfumeShop.Data;
-using OnlinePerfumeShop.Data.Models;
-using OnlinePerfumeShop.Infrastructure;
-using OnlinePerfumeShop.Services;
-using OnlinePerfumeShop.Services.Home;
-using OnlinePerfumeShop.Services.Orders;
-using OnlinePerfumeShop.Services.Perfumes;
-using OnlinePerfumeShop.Services.ShoppingCart;
-
 namespace OnlinePerfumeShop
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+    using OnlinePerfumeShop.Data;
+    using OnlinePerfumeShop.Data.Models;
+    using OnlinePerfumeShop.Infrastructure;
+    using OnlinePerfumeShop.Services.Home;
+    using OnlinePerfumeShop.Services.Orders;
+    using OnlinePerfumeShop.Services.Perfumes;
+    using OnlinePerfumeShop.Services.ShoppingCart;
+
     public class Startup
     {
         public Startup(IConfiguration configuration) => Configuration = configuration;

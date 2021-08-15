@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using OnlinePerfumeShop.Data.Models;
-using System;
-
-namespace OnlinePerfumeShop.Data
+﻿namespace OnlinePerfumeShop.Data
 {
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore;
+    using OnlinePerfumeShop.Data.Models;
+
     public class OnlinePerfumeShopDbContext : IdentityDbContext<User>
     {
        

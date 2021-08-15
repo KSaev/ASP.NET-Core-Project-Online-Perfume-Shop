@@ -1,11 +1,8 @@
 ﻿using OnlinePerfumeShop.Services.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace OnlinePerfumeShop.Services.ShoppingCart
 {
+    using System.Collections.Generic;
     public interface IShoppingCartService
     {
         public void AddProductToCart(int id, string userId);
