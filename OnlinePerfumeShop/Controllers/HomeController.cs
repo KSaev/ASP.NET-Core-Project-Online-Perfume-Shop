@@ -12,7 +12,7 @@
         {
             this.service = service;
         }
-       public IActionResult Index(int id = 1)
+        public IActionResult Index(int id = 1)
         {
             var itemsPerPage = 12;
 
@@ -57,5 +57,6 @@
 
             return View(perfumes);
         }
+
     }
 }
