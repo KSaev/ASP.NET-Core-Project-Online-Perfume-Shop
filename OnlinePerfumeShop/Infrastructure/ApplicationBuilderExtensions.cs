@@ -28,7 +28,7 @@
             return app;
         }
 
-        private static void MigrateDatabase(IServiceProvider services)
+        private  static void MigrateDatabase(IServiceProvider services)
         {
             var data = services.GetRequiredService<OnlinePerfumeShopDbContext>();
 
