@@ -6,12 +6,14 @@
 @section Styles{
     <link rel="stylesheet" href="~/css/Home/all.css" asp-append-version="true" />
 }
+
 @if (Model.Page > Model.PageCount)
 {
     <partial name="_IncorrectPagePartial" />
 }
 else
 {
+
     <br />
     <div class="dropdown text-right">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
